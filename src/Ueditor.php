@@ -1,9 +1,12 @@
 <?php
 /**
  * Ueditor插件
- * @author Nintendov
+ * @author xiucai
  */
 namespace think\ueditor;
+
+use think\facade\Env;
+
 class Ueditor{
 	
 	private $output;//要输出的数据
@@ -119,7 +122,16 @@ class Ueditor{
 	 */
 	private function uploadFile($config,$fieldName){
 		$file = request()->file('upfile');
-		$info = $file->validate($config['allowFiles'])->move(ROOT_PATH . 'public' . $config['pathFormat']);
+		if(defined('THINK_VERSION')) {
+		    $filepath = ROOT_PATH . "public" . $config['pathFormat'];
+            $this->createDir($filepath);
+            $info = $file->validate($config['allowFiles'])->move($filepath);
+        } else {
+            $filepath = Env::get('root_path') . "public" . $config['pathFormat'];
+            $this->createDir($filepath);
+            $info = $file->validate($config['allowFiles'])->move($filepath);
+        }
+
 		if($info){
 			$data = array(
 				'state'=>	"SUCCESS",
@@ -155,12 +167,15 @@ class Ueditor{
         	return json_encode($data);
         }
         
-        $rootpath = $this->rootpath;
         // p($path);
         //替换随机字符串
         $imgname = uniqid().'.png';
         $filename = $path."/".$imgname;
-        $this->createDir(ROOT_PATH ."public".$path);
+        if(defined('THINK_VERSION')) {
+            $this->createDir(ROOT_PATH ."public".$path);
+        } else {
+            $this->createDir(Env::get('root_path') ."public".$path);
+        }
         $flg = file_put_contents('.'.$filename,$img);
 		if($flg){
 			$data=array(
