@@ -1,16 +1,24 @@
 {
-    "name": "zhangvoice/ueditor",
-    "description": "this is a Ueditor",
-    "license": "Apache-2.0",
-    "version": "1.0.1",
+    "name": "xiucaiwu/thinkueditor",
+    "description": "ThinkPHP定制版Ueditor,要求TP5以上版本",
+	"keywords": [
+		"ueditor",
+		"tpueditor",
+		"tp5ueditor",
+		"tp6ueditor",
+		"ueditor for thinkphp"
+	  ],
+    "license": "MIT",
+    "version": "1.0",
     "authors": [
         {
-            "name": "zhangvoice",
-            "email": "294097329@qq.com"
+            "name": "xiucai",
+            "email": "xiucai.me@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+		"topthink/think" : ">=5.0.9"
     },
     "autoload": {
         "psr-4": {
