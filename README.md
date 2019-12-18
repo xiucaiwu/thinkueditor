@@ -32,7 +32,7 @@ public function ueditor()
     $(function(){
         var ue = UE.getEditor('container',{
             serverUrl :"{:url('模块/控制器/ueditor')}",   // 调用的上面控制器里的方法
-			initialFrameHeight:450		// 初始化高度
+	    initialFrameHeight:450		         // 初始化高度
         });
     })
 </script>
